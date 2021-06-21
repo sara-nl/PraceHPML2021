@@ -1,0 +1,9 @@
+We created a requirements file using
+
+pip freeze --path /home/lcur0571/JHL_installations/Python/lib/python3.8/site-packages/ > requirements.txt
+
+Note that in this jupyter environment, installations were done using the --ignore-installed flag, to avoid pip trying to uninstall global packages. That means that the list of requirements is probably far longer than it needs to be. They key packages are (probably): TensorFlow, tensorboard_plugin_profile, pytorch, ray[tune], horovod (make sure that it uses NCCL when installing) and torchgpipe
+
+In terms of software requirments, please note one needs CUDA & cuDNN for TensorFlow to work properly on the GPU (and one needs the right versions that are compatible with the TensorFlow wheel). We also need NCCL for Horovod to work efficiently. The 'env' hook used for this course is also backed up in this repository (file is simply called 'env').
+
+Alternatively, we could run using modules for TensorFlow & PyTorch next year using the module environment only, which would ensure a compatible combination of all things.

@@ -1,0 +1,30 @@
+## example file to set environment variable/paths for students
+# It is sh/bash style syntax
+
+export PYTHON_VERSION=3.8.2
+export PYTHON_MAJ_MIN=$(echo $PYTHON_VERSION | sed 's/\.[^.]*$//')
+
+## ENV needed for program
+#PROGRAM_NEEDED_VAR="test";
+
+## This is the default module environment.
+# if changed you need the jupyterhub client software
+#   * jupyterhub/1.0.0-foss-2018b-Python-3.6.6
+
+module load 2020
+module load jupyterhub/1.1.0-foss-2020a-Python-${PYTHON_VERSION}
+module load IRkernel/1.1.1-foss-2020a-R-4.0.2-Python-3.8.2
+module load cuDNN/8.2.1.32-CUDA-11.2.2
+
+export PYTHONPATH=${TEACHER_DIR}/JHL_installations/Python/lib/python${PYTHON_MAJ_MIN}/site-packages:$PYTHONPATH
+export R_LIBS=${TEACHER_DIR}/JHL_installations/R/:$R_LIBS
+export PATH=${TEACHER_DIR}/JHL_installations/Python/bin:$PATH
+export JUPYTER_PATH=${TEACHER_DIR}/JHL_installations/Python/share/jupyter:${JUPYTER_PATH}
+
+# Ensure ipywidgets and jupyter-matplotlib nbextensions are automatically found and enabled
+export JUPYTER_PATH=${EBROOTIPYTHON}/share/jupyter:${JUPYTER_PATH}
+export JUPYTER_CONFIG_PATH=${EBROOTIPYTHON}/etc/jupyter:${JUPYTER_CONFIG_PATH}
+
+# Ensure any nbextensions installed by the teachers are automatically found and enabled
+export JUPYTER_PATH=${TEACHER_DIR}/JHL_installations/Python/share/jupyter:${JUPYTER_PATH}
+export JUPYTER_CONFIG_PATH=${TEACHER_DIR}/JHL_installations/Python/etc/jupyter:${JUPYTER_CONFIG_PATH}
